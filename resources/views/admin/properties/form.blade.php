@@ -32,6 +32,7 @@
             @include('shared.input', ["class" => "col", "label" => "Ville", "name" => "city", "value" => $property->city])
             @include('shared.input', ["type" => "number", "class" => "col", "label" => "Code Postal", "name" => "postal_code", "value" => $property->postal_code])
         </div>
+        @include('shared.select', ["label" => "Options", "name" => "options", "options" => $options, "value" => $property->options()->pluck('id')])
         @include('shared.checkbox', ["label" => "Vendu", "name" => "sold", "value" => $property->sold])
         <button class="btn btn-primary">
             @if($property->exists)
