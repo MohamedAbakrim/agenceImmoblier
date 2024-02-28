@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Option;
+use Illuminate\Support\Str;
 
 class Property extends Model
 {
@@ -27,5 +28,10 @@ class Property extends Model
 
     public function options(){
         return $this->belongsToMany(Option::class);
+    }
+
+
+    public function getSlug(){
+        return Str::slug($this->title);
     }
 }
