@@ -31,14 +31,7 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-5">
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{session('success')}}
-            </div>
-        @endif
-        @yield('content')
-    </div>
+    @include('shared.flash')
     <!-- @if($errors->any())
         @foreach($errors->all() as $e)
             <div class="container alert alert-danger">
