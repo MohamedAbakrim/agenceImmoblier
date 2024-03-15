@@ -71,14 +71,8 @@ class PropertyController extends Controller
     
     public function destroy(String $id)
     {
-        
-        $property = Property::find($id);
-        if($property){
-            $property->delete;
-            return to_route('admin.property.index')->with('success', 'Le bien a bien été supprimé');
-        }else{
-            Property::withTrashed()->where('id', $id)->forceDelete();
-            return to_route('admin.property.index')->with('success', 'Le bien a bien été permenatly supprimé');
-        }
+        $property = Property::withTrashed()->where('id', $id)->first();
+        $property->deleted_at ? /* $property->forceDelete() */ $property->restore() : $property->delete() ;
+        return to_route('admin.property.index')->with('success', 'Le bien a bien été supprimé');
     }
 }
