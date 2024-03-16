@@ -13,6 +13,12 @@ use App\Http\Requests\Admin\PropertyFormRequest;
 class PropertyController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->authorizeResource(Property::class, 'peroperty');
+    }
+
+
     public function index()
     {
         return view('admin.properties.index', [
